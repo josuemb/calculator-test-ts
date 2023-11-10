@@ -37,21 +37,29 @@ class CalculatorPage extends Page {
      * Get button element by key
      * @param {string} buttonKey
      */
-    public getButton(buttonKey: string) {
+    getButton(buttonKey: string) {
+        // See: https://webdriver.io/docs/api/webdriver/#findelement
         return $(CALCULATOR_KEY_SELECTOR[buttonKey]);
     }
+
     /**
      * Press button
      * @param {string} buttonKey
      */
     async pressButton(buttonKey: string) {
+        // See: http://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#click
         await this.getButton(buttonKey).click();
     }
 
     async resultPreview() {
+        // See: https://webdriver.io/docs/api/element/isExisting/
         await $(RESULT_DISPLAY_ID).isExisting();
-        return $(RESULT_DISPLAY_ID).getText();
+        // See: http://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#gettext
+        return await $(RESULT_DISPLAY_ID).getText();
     }
+
+    // To see other properties and methods supported for the driver, check:
+    // https://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/
 }
 
 export default new CalculatorPage();
