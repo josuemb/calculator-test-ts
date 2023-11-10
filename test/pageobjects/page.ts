@@ -6,13 +6,11 @@ import { driver } from '@wdio/globals'
 */
 export default class Page {
     public async open() {
-        driver.setImplicitTimeout(10000);
-        //driver.launchApp();
+        driver.setTimeouts(10000);
         driver.execute('mobile: activateApp', {});
         await $('id=com.google.android.calculator:id/main_calculator').isExisting();
     }
     public async close() {
-        //driver.closeApp();
         driver.execute('mobile: terminateApp', {});
     }
 }
