@@ -21,7 +21,7 @@ export const config: Options.Testrunner = {
     // gets prepended directly.
     baseUrl: 'http://localhost',
     port: 4723,
-    path: '/wd/hub',
+    //path: '/wd/hub',  // Use this configuration for Appium v 1.x
 
     autoCompileOpts: {
         autoCompile: true,
@@ -78,8 +78,10 @@ export const config: Options.Testrunner = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         'platformName': 'Android',
-        'appium:automationName': 'UiAutomator2',
-        'appium:app': appBinaryPath
+        //'automationName': 'UiAutomator2',              // Use this configuration for Appium v 1.x
+        //'app': appBinaryPath,                          // Use this configuration for Appium v 1.x
+        'appium:automationName': 'UiAutomator2',         // Use this configuration for Appium v 2.x
+        'appium:app': appBinaryPath,                     // Use this configuration for Appium v 2.x
     }],
 
     //

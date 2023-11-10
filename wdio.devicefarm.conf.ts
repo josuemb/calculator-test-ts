@@ -75,7 +75,8 @@ export const config: Options.Testrunner = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         'platformName': 'Android',
-        'appium:automationName': 'UiAutomator2'
+        //'automationName': 'UiAutomator2',              // Use this configuration for Appium v 1.x
+        'appium:automationName': 'UiAutomator2',         // Use this configuration for Appium v 2.x
     }],
 
     //
