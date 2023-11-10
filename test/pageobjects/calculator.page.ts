@@ -48,7 +48,7 @@ class CalculatorPage extends Page {
         await this.getButton(buttonKey).click();
     }
 
-    async result() {
+    async resultPreview() {
         await $(RESULT_DISPLAY_ID).isExisting();
         return $(RESULT_DISPLAY_ID).getText();
     }
