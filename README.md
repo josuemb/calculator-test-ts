@@ -148,8 +148,18 @@ To execute local testing, it is necessary to execute the next steps:
 <code>appium</code><br>
 In case everything goes will you will see next message into the command line:<br>
 <code>
-[Appium] Welcome to Appium v1.22.3<br>
-[Appium] Appium REST http interface listener started on 0.0.0.0:4723
+[Appium] Welcome to Appium v2.2.2<br>
+[Appium] Attempting to load driver uiautomator2...<br>
+[Appium] Requiring driver at C:\Users\josuemb\.appium\node_modules\appium-uiautomator2-driver<br>
+[Appium] Appium REST http interface listener started on http://0.0.0.0:4723<br>
+[Appium] You can provide the following URLs in your client code to connect to this server:<br>
+[Appium]        http://11.128.47.153:4723/<br>
+[Appium]        http://192.168.100.6:4723/<br>
+[Appium]        http://127.0.0.1:4723/ (only accessible from the same host)<br>
+[Appium]        http://172.29.96.1:4723/<br>
+[Appium] Available drivers:<br>
+[Appium]   - uiautomator2@2.34.1 (automationName 'UiAutomator2')<br>
+[Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.<br>
 </code><br>
 Where v.1.22.3 is the last available [Appium](http://appium.io/) version and it could change depending on the specific version you have installed.<br>
 **IMPORTANT:** If the version is >= 2.0.0 then, the tests will not run and you need to uninstall this version and install last available 1.X available version.
