@@ -1,4 +1,3 @@
-import type { Options } from '@wdio/types'
 import * as path from 'path';
 
 const appBinaryPath = path.resolve('./apk/application.apk');
@@ -7,7 +6,7 @@ const appBinaryPath = path.resolve('./apk/application.apk');
  * Webdriver.IO configuration file for local tests execution.
  * See: https://webdriver.io/docs/configurationfile/
  */
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     //
     // ====================
     // Runner Configuration
@@ -23,13 +22,8 @@ export const config: Options.Testrunner = {
     port: 4723,
     //path: '/wd/hub',  // Use this configuration for Appium v 1.x
 
-    autoCompileOpts: {
-        autoCompile: true,
-        tsNodeOpts: {
-            project: './tsconfig.json',
-            transpileOnly: true
-        }
-    },
+    // Note: WDIO v9 uses tsx instead of ts-node for TypeScript compilation.
+    // autoCompileOpts is no longer needed.
     //
     // ==================
     // Specify Test Files
