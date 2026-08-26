@@ -24,7 +24,7 @@ Some additional considerations for the testing code are:<br>
 See more at: https://nodejs.org/en/about.
 
 3. [Typescript](https://www.typescriptlang.org/): "is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.".<br>
-In this solution we are using JavaScript since is a very known language with wide support and very mature.<br>
+In this solution we are using TypeScript since it adds static typing on top of JavaScript, giving better tooling and safer refactors.<br>
 See more about Typescript at: https://www.typescriptlang.org/.<br>
 
 4. [Appium](http://appium.io/): It is the center of the solutions. According to its web page it "is an open-source project and ecosystem of related software, designed to facilitate UI automation of many app platforms, including mobile (iOS, Android, Tizen), browser (Chrome, Firefox, Safari), desktop (macOS, Windows), TV (Roku, tvOS, Android TV, Samsung), and more". See more on: http://appium.io/.<br>
@@ -58,7 +58,7 @@ Next subsections describe how to enable each testing environment: local environm
 ### Local testing environment
 For the local testing environment, we need to set many things up. Next, we are describing each component:
 1. [Node.js](https://nodejs.org/):<br> To see how to install it depending on you OS see: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs.<br>
-Since the last version capable to run into AWS Device effortless is 16.x (last available release), then the recommendation is to use same version in the local environment.<br>
+The AWS Device Farm custom test environment used by this project runs on Node.js 18.x (see the spec file `aws-device-farm-config/awsdevicefarm_custom_spec_file.yml`), so the recommendation is to use Node.js 18.x in the local environment as well.<br>
 Once you finished the installation, you can check the installation was successful by executing the command:<br>
 <code>node --version</code><br>
 Additionally, when you install [Node.js](https://nodejs.org/) you also install [npm](https://docs.npmjs.com/about-npm) which we will use to install [Appium](http://appium.io/) in the next step.
@@ -67,10 +67,10 @@ To check it npm is installed running well, please execute the command:<br>
 <code>npm --version</code>
 
 2. [Appium](http://appium.io/):<br> We will install Appium using npm.<br>
-For this example, we will use [Standard test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#test-environments-standard) since it give us more flexibility.<br>
-It supports node.js 16.x and Appium ver 1.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
+This project uses the [Custom test environment](https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-environments.html#custom-test-environment), which lets us pin the runtime and Appium versions.<br>
+It uses Node.js 18.x and Appium ver 2.x. See: https://docs.aws.amazon.com/devicefarm/latest/developerguide/amazon-linux-2-supported-software.html<br>
 Install local version by executing:<br>
-<code>npm install -g appium@">= 1.0.0 <2.0.0"</code><br>
+<code>npm install -g appium@">= 2.0.0 <3.0.0"</code><br>
 Once [Appium](http://appium.io/) is installed, you can check the installation was successful by executing the command:<br>
 <code>appium --version</code>
 
@@ -105,9 +105,9 @@ For the cloud testing environment, we just need to few steps into [AWS Device Fa
 1. Setting up AWS Device Farm. See AWS guide at: https://docs.aws.amazon.com/devicefarm/latest/developerguide/setting-up.html.
 2. To create the automated test using [Appium](http://appium.io/) as the test framework and [Node.js](https://nodejs.org/) as the execution engine, follow the next guide:
     1. Download the code of this repo using the git command:
-    <code>git clone https://github.com/josuemb/calculator-test-js.git</code><br>
+    <code>git clone https://github.com/josuemb/calculator-test-ts.git</code><br>
     2. Create the **test zip file** by executing the command:<br>
-    <code>npm create-zip</code><br>
+    <code>npm run create-zip</code><br>
     In the root folder of the recent downloaded project.<br>
     It will create a file named: **calculator-test-0.0.1.zip** where 0.0.1 is the corresponding version into the **package.json** file. This file will be used to upload and execute tests into [AWS Device Farm](https://aws.amazon.com/device-farm/) service.
     3. Sign into the [AWS Device Farm](https://aws.amazon.com/device-farm/) console at: https://console.aws.amazon.com/devicefarm.
@@ -161,8 +161,8 @@ In case everything goes will you will see next message into the command line:<br
 [Appium]   - uiautomator2@2.34.1 (automationName 'UiAutomator2')<br>
 [Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.<br>
 </code><br>
-Where v.1.22.3 is the last available [Appium](http://appium.io/) version and it could change depending on the specific version you have installed.<br>
-**IMPORTANT:** If the version is >= 2.0.0 then, the tests will not run and you need to uninstall this version and install last available 1.X available version.
+The exact Appium version shown could change depending on the specific version you have installed.<br>
+**IMPORTANT:** This project requires Appium **>= 2.0.0**. If your installed version is 1.x, uninstall it and install the latest 2.x (`npm install -g appium@">= 2.0.0 <3.0.0"`), and make sure the UiAutomator2 driver is installed (`appium driver install uiautomator2`).
 7. Follow instructions indicated in the file [/apk/README.md](/apk/README.md) and name the apk file as *application.apk* into the *apk* folder of the root folder of this solution.
 8. Execute all tests by executing the next command in the command line:<br>
 <code>npm run wdio-local</code><br>
